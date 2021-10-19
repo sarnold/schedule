@@ -73,11 +73,12 @@ repos:
           additional_dependencies: [tokenize-rt==3.2.0]
           args: [--no-strict-optional, --ignore-missing-imports]
 
-  - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.0
-    hooks:
-      - id: bandit
-        exclude: 'test_schedule.py'
+#  - repo: https://github.com/PyCQA/bandit
+#    rev: 1.7.0
+#    hooks:
+#      - id: bandit
+#        exclude: 'test_schedule.py'
+#        args: ["-b", "bandit_baseline.json"]
 
   - repo: https://github.com/PyCQA/pylint
     rev: v2.11.1
