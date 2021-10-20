@@ -17,7 +17,7 @@ jobs:
     env:
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python-version }}
-      MACOSX_DEPLOYMENT_TARGET: "10.14"
+      TZ: America/Los_Angeles
     strategy:
       fail-fast: false
       #max-parallel: 6
@@ -50,6 +50,8 @@ jobs:
 
       - name: Run full test suite
         run: |
+          echo $TZ
+          date
           tox
         env:
           PLATFORM: ${{ matrix.os }}
@@ -64,7 +66,7 @@ jobs:
           COVERALLS_FLAG_NAME: python-${{ matrix.python-version }}
           COVERALLS_PARALLEL: true
         run: |
-          pip3 install coveralls
+          pip3 install coveralls coverage_python_version
           coveralls --service=github
 
   coveralls:
