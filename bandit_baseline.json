@@ -1,0 +1,46 @@
+{
+  "errors": [],
+  "generated_at": "2021-10-20T00:15:26Z",
+  "metrics": {
+    "_totals": {
+      "CONFIDENCE.HIGH": 1.0,
+      "CONFIDENCE.LOW": 0.0,
+      "CONFIDENCE.MEDIUM": 0.0,
+      "CONFIDENCE.UNDEFINED": 0.0,
+      "SEVERITY.HIGH": 0.0,
+      "SEVERITY.LOW": 1.0,
+      "SEVERITY.MEDIUM": 0.0,
+      "SEVERITY.UNDEFINED": 0.0,
+      "loc": 684,
+      "nosec": 0
+    },
+    "schedule/__init__.py": {
+      "CONFIDENCE.HIGH": 1.0,
+      "CONFIDENCE.LOW": 0.0,
+      "CONFIDENCE.MEDIUM": 0.0,
+      "CONFIDENCE.UNDEFINED": 0.0,
+      "SEVERITY.HIGH": 0.0,
+      "SEVERITY.LOW": 1.0,
+      "SEVERITY.MEDIUM": 0.0,
+      "SEVERITY.UNDEFINED": 0.0,
+      "loc": 684,
+      "nosec": 0
+    }
+  },
+  "results": [
+    {
+      "code": "682                 raise ScheduleError(\"`latest` is greater than `interval`\")\n683             interval = random.randint(self.interval, self.latest)\n684         else:\n",
+      "filename": "schedule/__init__.py",
+      "issue_confidence": "HIGH",
+      "issue_severity": "LOW",
+      "issue_text": "Standard pseudo-random generators are not suitable for security/cryptographic purposes.",
+      "line_number": 683,
+      "line_range": [
+        683
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/latest/blacklists/blacklist_calls.html#b311-random",
+      "test_id": "B311",
+      "test_name": "blacklist"
+    }
+  ]
+}

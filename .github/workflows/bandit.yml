@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  build:
+  scan:
     runs-on: ubuntu-20.04
 
     steps:
@@ -20,4 +20,4 @@ jobs:
       with:
         project_path: schedule
         ignore_failure: true
-        #baseline_file: bandit_baseline.json
+        baseline_file: bandit_baseline.json
