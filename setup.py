@@ -20,6 +20,7 @@ setup(
     version=SCHEDULE_VERSION,
     description="Job scheduling for humans.",
     long_description=read_file("README.rst"),
+    long_description_content_type="text/x-rst",
     license="MIT",
     author="Daniel Bader",
     author_email="mail@dbader.org",
