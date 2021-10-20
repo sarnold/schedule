@@ -514,7 +514,7 @@ class Job(object):
                 )
         elif self.unit == "hours":
             hour = 0
-        elif self.unit == "minutes":
+        elif self.unit == "minutes":  # pragma: no cover => probable unreachable branch
             hour = 0
             minute = 0
         minute = int(minute)
@@ -622,7 +622,7 @@ class Job(object):
         self.job_func = functools.partial(job_func, *args, **kwargs)
         functools.update_wrapper(self.job_func, job_func)
         self._schedule_next_run()
-        if self.scheduler is None:
+        if self.scheduler is None:  # pragma: no cover => probable unreachable branch
             raise ScheduleError(
                 "Unable to a add job to schedule. "
                 "Job is not associated with an scheduler"
@@ -635,7 +635,10 @@ class Job(object):
         """
         :return: ``True`` if the job should be run now.
         """
-        assert self.next_run is not None, "must run _schedule_next_run before"
+        if self.next_run is None:
+            raise ScheduleError(
+                "Must run _schedule_next_run before calling should_run!"
+            )
         return datetime.datetime.now(utc) >= self.next_run
 
     def run(self):

@@ -6,8 +6,6 @@ import unittest
 
 from datetime import timezone
 
-utc = timezone.utc
-
 # Silence "missing docstring", "method could be a function",
 # "class already defined", and "too many public methods" messages:
 # pylint: disable-msg=R0201,C0111,E0102,R0904,R0901
@@ -20,6 +18,8 @@ from schedule import (
     ScheduleValueError,
     IntervalError,
 )
+
+utc = timezone.utc
 
 
 def make_mock_job(name=None):
@@ -266,6 +266,8 @@ class SchedulerTests(unittest.TestCase):
             every(interval=2).saturday
         with self.assertRaises(IntervalError):
             every(interval=2).sunday
+        with self.assertRaises(ScheduleError):
+            every(interval=2).should_run
 
     def test_until_time(self):
         mock_job = make_mock_job()
@@ -414,6 +416,11 @@ class SchedulerTests(unittest.TestCase):
             assert every().minute.at(":10").do(mock_job).next_run.hour == 12
             assert every().minute.at(":10").do(mock_job).next_run.minute == 21
             assert every().minute.at(":10").do(mock_job).next_run.second == 10
+            # test for missing branch BUT it appears to be unreachable: 517->520
+            assert every().minute.at(":55").do(mock_job).unit == "minutes"
+            assert every().minute.at(":55").do(mock_job).at_time == datetime.time(
+                0, 0, 55
+            )
 
             self.assertRaises(ScheduleValueError, every().minute.at, "::2")
             self.assertRaises(ScheduleValueError, every().minute.at, ".2")

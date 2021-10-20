@@ -3,3 +3,5 @@ pytest
 pytest-cov
 pytest-flake8
 mypy
+coverage
+coverage_python_version
